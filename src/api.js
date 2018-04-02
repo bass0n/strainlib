@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const apiLink = 'https://strainapi.evanbusse.com/yrPzzCY/'
+const apiLink = 'http://strainapi.evanbusse.com/yrPzzCY/'
 
 export default {
 
