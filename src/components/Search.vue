@@ -30,12 +30,6 @@ export default {
   created () {
     this.effects = JSON.parse(this.$route.params.effects)
   },
-  updated () {
-    console.log('updated', this.results)
-  },
-  mounted () {
-    console.log('mounted', this.results)
-  },
   methods: {
     search: (selected) => {
       api.getStrainsByEffect(selected).then(data => {
