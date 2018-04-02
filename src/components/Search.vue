@@ -1,16 +1,46 @@
 <template>
   <div class="search">
-    <h1>Search</h1>
-
+    <h1>Search by type</h1>
+    <select id="example-1" v-model="selected">
+      <option v-for="item in effects" :key=item :id=item>
+        {{ item }}
+      </option>
+    </select>
+    <button v-on:click="search(selected)">Search</button>
+    <ul>
+      <li v-for="item in results" :key=item :id=item>
+        {{ item }}
+      </li>
+    </ul>
   </div>
 </template>
 
 <script>
+import api from '../api'
 export default {
   name: 'Search',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      effects: [],
+      selected: '',
+      races: ['Sativa', 'Indica', 'Hybrid'],
+      results: []
+    }
+  },
+  created () {
+    this.effects = JSON.parse(this.$route.params.effects)
+  },
+  updated () {
+    console.log('updated', this.results)
+  },
+  mounted () {
+    console.log('mounted', this.results)
+  },
+  methods: {
+    search: (selected) => {
+      api.getStrainsByEffect(selected).then(data => {
+        this.results = data.map(item => (item.name))
+      })
     }
   }
 }

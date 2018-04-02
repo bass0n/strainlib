@@ -5,18 +5,32 @@
     <label>
       Are you 21yo or above and promise to use the following content strictly for research purpose?
     </label>
-    <router-link :to="{ name: 'Search' }">Continue</router-link>
+    <router-link :to="{ name: 'Search', params: { effects: JSON.stringify(this.effects) } }">Continue</router-link>
 
   </div>
 </template>
 
 <script>
 // target="_blank"
+import api from '../api'
 export default {
   name: 'Welcome',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      effects: []
+    }
+  },
+  created () {
+    this.loadEffects()
+  },
+  updated () {
+    console.log(this.effects)
+  },
+  methods: {
+    loadEffects () {
+      api.getEffectsAll().then(data => {
+        this.effects = data.map(item => (item.effect))
+      })
     }
   }
 }

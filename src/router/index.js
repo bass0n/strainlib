@@ -13,7 +13,7 @@ export default new Router({
       component: Welcome
     },
     {
-      path: '/search/',
+      path: '/search/:effects',
       name: 'Search',
       component: Search
     }
