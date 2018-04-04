@@ -1,30 +1,16 @@
-# cue
+# StrainLib
 
-> A Vue.js project
+#### StrainLib is essentially a small REST API web interface implemented with [Vue.js](https://vuejs.org)
 
-## Build Setup
+#### It uses [The Strain API](http://strains.evanbusse.com/)
 
-``` bash
-# install dependencies
-npm install
+#### Currently allows searching strains by name, race, or an effect the strain has. Results can be seen singularly on a separate page
 
-# serve with hot reload at localhost:8080
-npm run dev
+#### Usage of named API initially sets certain usage limitations:
+⋅⋅* Currently impossible to use in Chrome due to issues with server certificate(please use Firefox)
+⋅⋅* Requests are few and search is possible only by one criteria (client-side filtration to be implemented)
 
-# build for production with minification
-npm run build
-
-# build for production and view the bundle analyzer report
-npm run build --report
-
-# run unit tests
-npm run unit
-
-# run e2e tests
-npm run e2e
-
-# run all tests
-npm test
-```
-
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+#### Roadmap:
+⋅⋅* Set pagination for search results
+⋅⋅* Add client-side filtration for multiple criteria(effect/set of effects, flavor/set of flavors, race)
+⋅⋅* Possibly add ability to compare strains by effects/flavors
