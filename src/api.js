@@ -17,13 +17,17 @@ export default {
   getStrainsByEffect (effect) {
     return axios.get(apiLink + 'strains/search/effect/' + effect).then(res => res.data)
   },
-  getStrainDescription (id) {
-    return axios.get(apiLink + 'strains/data/desc/' + id).then(res => res.data)
-  },
-  getStrainEffects (id) {
-    return axios.get(apiLink + 'strains/data/effects/' + id).then(res => res.data)
-  },
-  getStrainFlavors (id) {
-    return axios.get(apiLink + 'strains/data/flavors/' + id).then(res => res.data)
+  async getStrain (id) {
+    const firstRequest = await axios.get(apiLink + 'strains/data/desc/' + id)
+    const secondRequest = await axios.get(apiLink + 'strains/data/effects/' + id)
+    const thirdRequest = await axios.get(apiLink + 'strains/data/flavors/' + id)
+    let result = {
+      description: firstRequest.data.desc,
+      positive: secondRequest.data.positive,
+      negative: secondRequest.data.negative,
+      medical: secondRequest.data.medical,
+      flavors: thirdRequest.data
+    }
+    return result
   }
 }

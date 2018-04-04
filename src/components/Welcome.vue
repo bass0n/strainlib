@@ -1,36 +1,27 @@
 <template>
   <div class="hello">
     <h1>Welcome to StrainLib</h1>
-    <input type="checkbox" name="censorship">
-    <label>
-      Are you 21yo or above and promise to use the following content strictly for research purpose?
+    <input type="checkbox" id="censorship" v-model="agree" />
+    <label for="censorship">
+      I am 21yo or above and promise to use the following content strictly for research purpose.
     </label>
-    <router-link :to="{ name: 'Search', params: { effects: JSON.stringify(this.effects) } }">Continue</router-link>
-
+    <button v-bind:disabled="agree === false" v-on:click="goTo">Continue</button>
   </div>
 </template>
 
 <script>
+// :to="{ name: 'Search' }
 // target="_blank"
-import api from '../api'
 export default {
   name: 'Welcome',
   data () {
     return {
-      effects: []
+      agree: false
     }
   },
-  created () {
-    this.loadEffects()
-  },
-  updated () {
-    console.log(this.effects)
-  },
   methods: {
-    loadEffects () {
-      api.getEffectsAll().then(data => {
-        this.effects = data.map(item => (item.effect))
-      })
+    goTo () {
+      this.$router.push('/Search')
     }
   }
 }

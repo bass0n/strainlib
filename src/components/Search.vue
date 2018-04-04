@@ -2,42 +2,48 @@
   <div class="search">
     <h1>Search by type</h1>
     <select id="example-1" v-model="selected">
-      <option v-for="item in effects" :key=item :id=item>
+      <option v-for="item in effectsAll" :key=item :id=item>
         {{ item }}
       </option>
     </select>
-    <button v-on:click="search(selected)">Search</button>
+    <button v-on:click="searchByEffect(selected)">Search</button>
     <ul>
-      <li v-for="item in results" :key=item :id=item>
-        {{ item }}
+      <li v-for="item in results" :key=item.id :id=item.id>
+        <router-link :to="{ name: 'Strain', params: { id: item.id } }">{{ item.name }}</router-link>
       </li>
     </ul>
   </div>
 </template>
 
 <script>
-import api from '../api'
+import { mapGetters } from 'vuex'
 export default {
   name: 'Search',
   data () {
     return {
-      effects: [],
-      selected: '',
-      races: ['Sativa', 'Indica', 'Hybrid'],
-      results: []
+      selected: ''
     }
   },
   created () {
-    this.effects = JSON.parse(this.$route.params.effects)
+    this.$store.dispatch('loadEffects')
+  },
+  mounted () {
+    // console.log(this.$store.effects)
+  },
+  computed: mapGetters({
+    effectsAll: 'getEffectsAll',
+    results: 'getResults'
+  }),
+  updated () {
+    console.log(this.$store)
   },
   methods: {
-    search: (selected) => {
-      api.getStrainsByEffect(selected).then(data => {
-        this.results = data.map(item => (item.name))
-      })
+    searchByEffect (effect) {
+      this.$store.dispatch('searchByEffect', effect)
     }
   }
 }
+
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
@@ -45,7 +51,7 @@ export default {
 h1, h2 {
   font-weight: normal;
 }
-a {
+p {
   width: 12rem;
   border-radius: .4rem;
   display: block;
