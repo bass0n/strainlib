@@ -7,10 +7,10 @@
 #### Currently allows searching strains by name, race, or an effect the strain has. Results can be seen singularly on a separate page
 
 #### Usage of named API initially sets certain usage limitations:
-⋅⋅* Currently impossible to use in Chrome due to issues with server certificate(please use Firefox)
-⋅⋅* Requests are few and search is possible only by one criteria (client-side filtration to be implemented)
+* Currently impossible to use in Chrome due to issues with server certificate(please use Firefox)
+* Requests are few and search is possible only by one criteria (client-side filtration to be implemented)
 
 #### Roadmap:
-⋅⋅* Set pagination for search results
-⋅⋅* Add client-side filtration for multiple criteria(effect/set of effects, flavor/set of flavors, race)
-⋅⋅* Possibly add ability to compare strains by effects/flavors
+* Set pagination for search results
+* Add client-side filtration for multiple criteria(effect/set of effects, flavor/set of flavors, race)
+* Possibly add ability to compare strains by effects/flavors
