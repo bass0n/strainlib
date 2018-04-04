@@ -1,16 +1,16 @@
 <template>
   <div class="search">
-    <h1>Search by type</h1>
+    <h1>Search by race</h1>
     <div class="nav">
-      <router-link :to="{ name: 'SearchRace' }">Want to search by race?</router-link>
+      <router-link :to="{ name: 'Search' }">Want to search by effects?</router-link>
       <router-link :to="{ name: 'SearchName' }">Want to search by name?</router-link>
     </div>
     <select id="example-1" v-model="selected">
-      <option v-for="item in effectsAll" :key=item :id=item>
+      <option v-for="item in races" :key=item :id=item>
         {{ item }}
       </option>
     </select>
-    <button v-bind:disabled="!selected" v-on:click="searchByEffect(selected)">Search</button>
+    <button v-bind:disabled="!selected" v-on:click="searchByRace(selected)">Search</button>
     <p v-if="results.length===0">No results</p>
     <div class="results">
       <router-link v-for="item in results" :key=item.id :id=item.id :to="{ name: 'Strain', params: { id: item.id, name: item.name } }">{{ item.name }}</router-link>
@@ -21,20 +21,17 @@
 <script>
 import { mapGetters } from 'vuex'
 export default {
-  name: 'Search',
+  name: 'SearchRace',
   data () {
     return {
       selected: ''
     }
   },
-  created () {
-    this.$store.dispatch('loadEffects')
-  },
   mounted () {
     // console.log(this.$store.effects)
   },
   computed: mapGetters({
-    effectsAll: 'getEffectsAll',
+    races: 'getRaces',
     results: 'getResults'
   }),
   updated () {
@@ -44,8 +41,8 @@ export default {
     this.$store.dispatch('eraseResults')
   },
   methods: {
-    searchByEffect (effect) {
-      this.$store.dispatch('searchByEffect', effect)
+    searchByRace (race) {
+      this.$store.dispatch('searchByRace', race)
     }
   }
 }
@@ -94,6 +91,7 @@ a:hover, a:active, a:focus {
   grid-template-columns: 1fr 1fr;
 }
 .nav a {
+  text-decoration: none;
   background: #9ACD32;
   color: #fff;
   padding: .5rem 1rem;

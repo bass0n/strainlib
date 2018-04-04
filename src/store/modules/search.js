@@ -11,7 +11,8 @@ const state = {
 // getters
 const getters = {
   getResults: state => state.results,
-  getEffectsAll: state => state.effects
+  getEffectsAll: state => state.effects,
+  getRaces: state => state.races
 }
 
 // actions
@@ -21,10 +22,23 @@ const actions = {
       commit('setSearchResults', strains)
     })
   },
+  searchByRace ({ commit, state }, race) {
+    api.getStrainsByRace(race).then(strains => {
+      commit('setSearchResults', strains)
+    })
+  },
+  searchByName ({ commit, state }, name) {
+    api.getStrainsByName(name).then(strains => {
+      commit('setSearchResults', strains)
+    })
+  },
   loadEffects ({ commit }) {
     api.getEffectsAll().then(data => {
       commit('setEffectsAll', data.map(item => (item.effect)))
     })
+  },
+  eraseResults ({ commit }) {
+    commit('setResultsNone')
   }
 }
 
@@ -38,6 +52,9 @@ const mutations = {
   },
   setEffectsAll (state, effects) {
     state.effects = effects
+  },
+  setResultsNone (state) {
+    state.results = []
   }
 }
 

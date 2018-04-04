@@ -18,15 +18,15 @@ export default {
     return axios.get(apiLink + 'strains/search/effect/' + effect).then(res => res.data)
   },
   async getStrain (id) {
-    const firstRequest = await axios.get(apiLink + 'strains/data/desc/' + id)
-    const secondRequest = await axios.get(apiLink + 'strains/data/effects/' + id)
-    const thirdRequest = await axios.get(apiLink + 'strains/data/flavors/' + id)
+    const description = await axios.get(apiLink + 'strains/data/desc/' + id)
+    const effects = await axios.get(apiLink + 'strains/data/effects/' + id)
+    const flavors = await axios.get(apiLink + 'strains/data/flavors/' + id)
     let result = {
-      description: firstRequest.data.desc,
-      positive: secondRequest.data.positive,
-      negative: secondRequest.data.negative,
-      medical: secondRequest.data.medical,
-      flavors: thirdRequest.data
+      description: description.data.desc,
+      positive: effects.data.positive,
+      negative: effects.data.negative,
+      medical: effects.data.medical,
+      flavors: flavors.data
     }
     return result
   }

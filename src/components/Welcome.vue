@@ -5,6 +5,8 @@
     <label for="censorship">
       I am 21yo or above and promise to use the following content strictly for research purpose.
     </label>
+    <vue-recaptcha class="recaptcha" sitekey="6LeTAFEUAAAAADxuq4-yzPBqDJSfYzC998MNserU">
+    </vue-recaptcha>
     <button v-bind:disabled="agree === false" v-on:click="goTo">Continue</button>
   </div>
 </template>
@@ -12,6 +14,7 @@
 <script>
 // :to="{ name: 'Search' }
 // target="_blank"
+import VueRecaptcha from 'vue-recaptcha'
 export default {
   name: 'Welcome',
   data () {
@@ -19,6 +22,7 @@ export default {
       agree: false
     }
   },
+  components: { VueRecaptcha },
   methods: {
     goTo () {
       this.$router.push('/Search')
@@ -26,11 +30,15 @@ export default {
   }
 }
 </script>
-
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 h1, h2 {
   font-weight: normal;
+}
+.recaptcha {
+  width: 320px;
+  display: block;
+  margin: .5rem auto;
 }
 a {
   width: 12rem;
