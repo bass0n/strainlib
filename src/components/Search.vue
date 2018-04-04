@@ -5,6 +5,7 @@
       <router-link :to="{ name: 'SearchRace' }">Want to search by race?</router-link>
       <router-link :to="{ name: 'SearchName' }">Want to search by name?</router-link>
     </div>
+    <span>Select an effect </span>
     <select id="example-1" v-model="selected">
       <option v-for="item in effectsAll" :key=item :id=item>
         {{ item }}
