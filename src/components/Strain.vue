@@ -69,7 +69,6 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .strain {
-  max-width: 640px;
   display: block;
   margin: 1rem auto;
 }

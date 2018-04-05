@@ -70,7 +70,6 @@ a:hover, a:active, a:focus {
   font-weight: 600;
 }
 .search {
-  max-width: 900px;
   display: block;
   margin: 0 auto;
 }
