@@ -7,8 +7,15 @@ It uses [The Strain API](http://strains.evanbusse.com/)
 ## At the moment requests seem to work only on my home desktop in Firefox(reasons unknown)
 ## TODO: scrape DB and make my own backend
 
+### Screenshots of (somehow) working version
+All search page show the same results grid
 ![](src/assets/search.png?raw=true)
 
+Singular result
+![](src/assets/strain.png?raw=true)
+
+#### And most curious - working network requests
+![](src/assets/network.png?raw=true)
 <!-- Currently allows searching strains by name, race, or an effect the strain has. Results can be seen singularly on a separate page
 
 ###### Usage of named API initially sets certain usage limitations:
